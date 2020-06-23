@@ -23,6 +23,19 @@
           <span />
         </div>
       </div>
+      <div class="navbar-end">
+        <div
+          v-if="$auth.loggedIn"
+          class="navbar-item"
+        >
+          <b-button
+            class="button is-light"
+            @click="logout"
+          >
+            Log Out
+          </b-button>
+        </div>
+      </div>
     </nav>
 
     <section class="main-content columns">
@@ -58,16 +71,22 @@ export default {
     return {
       items: [
         {
-          title: 'Home',
-          icon: 'home',
+          title: 'Dashboard',
+          icon: 'view-dashboard',
           to: { name: 'index' }
         },
         {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
+          title: 'Applications',
+          icon: 'application',
+          to: { name: 'applications' }
         }
       ]
+    }
+  },
+  methods: {
+    logout () {
+      this.$auth.logout()
+      window.location.reload()
     }
   }
 }

@@ -46,8 +46,26 @@ export default {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa'
   ],
+  /*
+  ** Auth0 module configuration
+  ** See https://auth.nuxtjs.org/
+  */
+  auth: {
+    strategies: {
+      auth0: {
+        domain: 'hedronnc.us.auth0.com',
+        client_id: 'fGsIS9TmxpF9r1HoCpSJWWjW4gHuWExv'
+        // audience: 'https://my-api-domain.com/'
+      }
+    }
+  },
+  // Auth Middleware
+  router: {
+    middleware: ['auth']
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
