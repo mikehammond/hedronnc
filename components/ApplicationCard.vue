@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-2by1">
         <img
-          src="https://bulma.io/images/placeholders/1280x960.png"
+          src="https://bit.ly/3dr4MAs"
           alt="Placeholder image"
         >
       </figure>

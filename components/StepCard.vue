@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by2">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        <img src="https://bit.ly/2CuBVOI" alt="Placeholder image">
       </figure>
     </div>
     <div class="card-content">
@@ -16,7 +16,7 @@
           <figure class="image is-32x32">
             <img
               class="is-rounded"
-              src="https://bulma.io/images/placeholders/96x96.png"
+              src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
               alt="Placeholder image"
             >
           </figure>
