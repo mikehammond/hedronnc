@@ -52,6 +52,7 @@
               v-for="(step, key) in steps"
               :key="key"
               class="column is-half"
+              @click="isModalActive = true"
             >
               <step-card :title="step.title" />
             </div>
