@@ -42,25 +42,62 @@
           />
         </b-field>
       </div>
-      <div class="column">
-        <p>Welcome</p>
+      <div class="column has-text-centered">
+        <p class="subtitle">
+          Application Steps
+        </p>
+        <div class="tile box">
+          <div class="columns is-mobile is-multiline">
+            <div
+              v-for="(step, key) in steps"
+              :key="key"
+              class="column is-half"
+            >
+              <step-card :title="step.title" />
+            </div>
+          </div>
+        </div>
+        <div class="columns is-mobile has-text-centered">
+          <div class="column">
+            <b-button
+              type="is-primary"
+              @click="isModalActive = true"
+            >
+              Add New Step
+            </b-button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="columns is-mobile has-text-centered">
-      <div class="column">
-        <b-button
-          type="is-primary"
-        >
-          Update Application
-        </b-button>
-      </div>
-    </div>
+    <b-modal
+      :active.sync="isModalActive"
+      :width="640"
+    >
+      <step-detail />
+    </b-modal>
   </section>
 </template>
 
 <script>
+import StepCard from '~/components/StepCard'
+import StepDetail from '~/components/StepDetail'
+
 export default {
-  name: 'ViewApplication'
+  name: 'ViewApplication',
+  components: {
+    StepCard,
+    StepDetail
+  },
+  data () {
+    return {
+      steps: [
+        { title: 'Application Form' },
+        { title: 'Visa Application' },
+        { title: 'Application Submission' }
+      ],
+      isModalActive: false
+    }
+  }
 }
 </script>
 

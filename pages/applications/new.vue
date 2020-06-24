@@ -27,8 +27,6 @@
             value="Kevin Garvey"
           />
         </b-field>
-      </div>
-      <div class="column">
         <b-field label="Start Date">
           <b-datepicker
             placeholder="Click to select..."
@@ -43,6 +41,9 @@
             trap-focus
           />
         </b-field>
+      </div>
+      <div class="column">
+        <p>Welcome</p>
       </div>
     </div>
     <div class="columns is-mobile has-text-centered">

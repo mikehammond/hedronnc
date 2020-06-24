@@ -30,6 +30,13 @@
         <span class="navbar-item" />
         <span class="navbar-item" />
         <span class="navbar-item" />
+        <span class="navbar-item" />
+        <span class="navbar-item" />
+        <span class="navbar-item" />
+        <span class="navbar-item" />
+        <search />
+        <span class="navbar-item" />
+        <span class="navbar-item" />
         <nuxt-link
           v-for="(item, key) of items"
           :key="key"
@@ -63,7 +70,12 @@
 </template>
 
 <script>
+import Search from '../components/Search'
+
 export default {
+  components: {
+    Search
+  },
   data () {
     return {
       items: [
