@@ -13,20 +13,17 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="columns is-mobile">
-      <nuxt-link
+    <div class="columns is-multiline is-mobile">
+      <div
         v-for="application in applications"
         :key="application.id"
-        class="column"
-        :to="`/applications/${application.id}/view`"
+        class="column is-one-third"
       >
         <card
           :title="application.title"
-          :icon="application.icon"
-        >
-          Open source on <a :href="application.link">GitHub</a>
-        </card>
-      </nuxt-link>
+          :link="`/applications/${application.id}/view`"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -45,27 +42,27 @@ export default {
       applications: [
         {
           id: 1,
-          title: 'Rosemarlines Application',
+          title: 'Oxford University - Undergraduate',
           icon: 'github',
-          link: 'https://github.com/buefy/buefy'
+          bg: 'https://bit.ly/2Z3pktt'
         },
         {
           id: 2,
-          title: 'Othniel Application',
+          title: 'Westford University - Postgraduate',
           icon: 'cellphone-link',
-          link: 'https://github.com/buefy/buefy'
+          bg: 'https://github.com/buefy/buefy'
         },
         {
           id: 3,
-          title: 'Michael Application',
+          title: 'Cambridge University - Undergraduate',
           icon: 'arrange-bring-to-front',
-          link: 'https://vuejs.org/'
+          bg: 'https://vuejs.org/'
         },
         {
           id: 4,
-          title: 'Kwame Application',
+          title: 'Ghana University - Undergraduate',
           icon: 'arrange-bring-to-front',
-          link: 'https://vuejs.org/'
+          bg: 'https://vuejs.org/'
         }
       ]
     }
