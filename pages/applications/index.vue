@@ -19,7 +19,7 @@
         :key="application.id"
         class="column is-one-third"
       >
-        <card
+        <application-card
           :title="application.title"
           :link="`/applications/${application.id}/view`"
         />
@@ -29,13 +29,12 @@
 </template>
 
 <script>
-import Card from '~/components/Card'
+import ApplicationCard from '~/components/ApplicationCard'
 
 export default {
   name: 'ApplicationIndex',
-
   components: {
-    Card
+    ApplicationCard
   },
   data () {
     return {
