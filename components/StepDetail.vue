@@ -35,12 +35,8 @@
 
       <div class="content">
         <div class="field">
-          <b-checkbox
-            true-value="Yes"
-            false-value="No"
-          >
-            <strong>Checklists</strong>
-          </b-checkbox>
+          <b-icon icon="checkbox-marked-outline" />
+          <span><strong>Checklists</strong></span>
         </div>
         <b-progress
           type="is-primary"
@@ -72,9 +68,16 @@
             Submit Application
           </b-checkbox>
         </div>
+        <b-field label="Add New Task">
+          <b-input
+            v-model="newTask"
+            type="textarea"
+          />
+        </b-field>
         <b-button
           type="is-primary"
           outlined
+          :disabled="!newTask"
         >
           Add Item
         </b-button>
@@ -85,7 +88,12 @@
 
 <script>
 export default {
-  name: 'StepDetail'
+  name: 'StepDetail',
+  data () {
+    return {
+      newTask: ''
+    }
+  }
 }
 </script>
 
