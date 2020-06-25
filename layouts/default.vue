@@ -40,7 +40,7 @@
         <nuxt-link
           v-for="(item, key) of items"
           :key="key"
-          class="navbar-item has-text-dark"
+          class="navbar-item has-text-white"
           :to="item.to"
         >
           {{ item.title }}
