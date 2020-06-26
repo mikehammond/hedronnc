@@ -12,19 +12,22 @@
         <b-field label="Application Title">
           <b-input
             icon="format-title"
-            value="Kevin Garvey"
+            :value="application.title"
+            disabled
           />
         </b-field>
         <b-field label="Application Description">
           <b-input
             type="textarea"
-            value="Kevin Garvey"
+            :value="application.description"
+            disabled
           />
         </b-field>
         <b-field label="Student Name">
           <b-input
             icon="account"
-            value="Kevin Garvey"
+            :value="application.student.name"
+            disabled
           />
         </b-field>
         <b-field label="Start Date">
@@ -32,6 +35,8 @@
             placeholder="Click to select..."
             icon="calendar-today"
             trap-focus
+            :value="application.startDate"
+            disabled
           />
         </b-field>
         <b-field label="End Date">
@@ -39,6 +44,8 @@
             placeholder="Click to select..."
             icon="calendar-today"
             trap-focus
+            :value="application.endDate"
+            disabled
           />
         </b-field>
       </div>
@@ -91,12 +98,20 @@ export default {
   },
   data () {
     return {
+      // applicationsList: [],
+      // application: {},
       steps: [
         { title: 'Application Form' },
         { title: 'Visa Application' },
         { title: 'Application Submission' }
       ],
       isModalActive: false
+    }
+  },
+  computed: {
+    application () {
+      const id = this.$route.params.id
+      return this.$store.getters['applications/getApplicationById'](+id)
     }
   }
 }

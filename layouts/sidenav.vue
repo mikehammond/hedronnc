@@ -11,7 +11,7 @@
           href="/"
         >
           <img
-            src="~assets/buefy.png"
+            src="~assets/h-scorecard.png"
             alt="Buefy"
             height="28"
           >

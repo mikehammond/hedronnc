@@ -3,7 +3,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  add (state, item) {
+  add: (state, item) => {
     state.list.push(item)
   }
+}
+
+export const getters = {
+  getApplicationById: state => id => state.list.find(x => x.id === id)
 }
