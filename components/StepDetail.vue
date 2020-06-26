@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-3by1">
         <img
-          src="https://bit.ly/2CuBVOI"
+          :src="step ? step.bg : 'https://bit.ly/2CuBVOI'"
           alt="Image"
         >
       </figure>
@@ -12,7 +12,7 @@
       <div class="media">
         <div class="media-content">
           <p class="title is-5">
-            Application Form Tasks
+            {{ step ? step.title : '' }}
           </p>
           <p>
             <span>for Rosemarlines Effiong</span>
@@ -40,32 +40,20 @@
         </div>
         <b-progress
           type="is-primary"
-          :value="25"
+          :value="progress"
           show-value
           format="percent"
         />
-        <div class="field">
+        <div
+          v-for="task in tasks"
+          :key="task.id"
+          class="field"
+        >
           <b-checkbox
-            true-value="Yes"
-            false-value="No"
+            :value="task.checked"
+            @change.native="toggleChecked(task.id)"
           >
-            Fill Application Form
-          </b-checkbox>
-        </div>
-        <div class="field">
-          <b-checkbox
-            true-value="Yes"
-            false-value="No"
-          >
-            Get Transcripts and Other Documentations
-          </b-checkbox>
-        </div>
-        <div class="field">
-          <b-checkbox
-            true-value="Yes"
-            false-value="No"
-          >
-            Submit Application
+            {{ task.title }}
           </b-checkbox>
         </div>
         <b-field label="Add New Task">
@@ -78,6 +66,7 @@
           type="is-primary"
           outlined
           :disabled="!newTask"
+          @click="addTask"
         >
           Add Item
         </b-button>
@@ -89,9 +78,43 @@
 <script>
 export default {
   name: 'StepDetail',
+  props: {
+    application: {
+      type: Object,
+      required: true
+    },
+    step: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
       newTask: ''
+    }
+  },
+  computed: {
+    tasks () {
+      return this.$store.getters['tasks/getTasksByStepId'](this.step.id)
+    },
+    progress () {
+      return this.$store.getters['tasks/getStepProgress'](this.step.id)
+    }
+  },
+  methods: {
+    addTask () {
+      const task = {
+        id: Date.now(),
+        applicationId: this.application.id,
+        stepId: this.step.id,
+        title: this.newTask,
+        checked: false
+      }
+      this.$store.commit('tasks/add', task)
+      this.newTask = ''
+    },
+    toggleChecked (id) {
+      this.$store.commit('tasks/toggleChecked', id)
     }
   }
 }

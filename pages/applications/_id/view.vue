@@ -50,7 +50,7 @@
         </b-field>
       </div>
       <div class="column has-text-centered">
-        <p class="subtitle">
+        <p class="title is-4">
           Application Steps
         </p>
         <div class="tile box">
@@ -59,9 +59,9 @@
               v-for="(step, key) in steps"
               :key="key"
               class="column is-half"
-              @click="isModalActive = true"
+              @click="openModal(step)"
             >
-              <step-card :title="step.title" />
+              <step-card :step="step" />
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
           <div class="column">
             <b-button
               type="is-primary"
-              @click="isModalActive = true"
+              @click="isNewStepModalActive = true"
             >
               Add New Step
             </b-button>
@@ -78,10 +78,19 @@
       </div>
     </div>
     <b-modal
-      :active.sync="isModalActive"
+      :active.sync="isStepDetailModalActive"
       :width="640"
     >
-      <step-detail />
+      <step-detail
+        :application="application"
+        :step="selectedStep"
+      />
+    </b-modal>
+    <b-modal
+      :active.sync="isNewStepModalActive"
+      :width="640"
+    >
+      <new-step :application="application" />
     </b-modal>
   </section>
 </template>
@@ -89,29 +98,37 @@
 <script>
 import StepCard from '~/components/StepCard'
 import StepDetail from '~/components/StepDetail'
+import NewStep from '~/components/NewStep'
 
 export default {
   name: 'ViewApplication',
+  middleware: ['application'],
   components: {
     StepCard,
-    StepDetail
+    StepDetail,
+    NewStep
   },
   data () {
     return {
-      // applicationsList: [],
-      // application: {},
-      steps: [
-        { title: 'Application Form' },
-        { title: 'Visa Application' },
-        { title: 'Application Submission' }
-      ],
-      isModalActive: false
+      isNewStepModalActive: false,
+      isStepDetailModalActive: false,
+      selectedStep: null
     }
   },
   computed: {
     application () {
       const id = this.$route.params.id
       return this.$store.getters['applications/getApplicationById'](+id)
+    },
+    steps () {
+      const id = this.$route.params.id
+      return this.$store.getters['steps/getStepsByApplicationId'](+id)
+    }
+  },
+  methods: {
+    openModal (step) {
+      this.selectedStep = step
+      this.isStepDetailModalActive = true
     }
   }
 }

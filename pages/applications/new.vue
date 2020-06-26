@@ -21,14 +21,6 @@
             type="textarea"
           />
         </b-field>
-      </div>
-      <div class="column">
-        <b-field label="Student Name">
-          <b-input
-            v-model="studentName"
-            icon="account"
-          />
-        </b-field>
         <b-field label="Start Date">
           <b-datepicker
             v-model="startDate"
@@ -45,6 +37,31 @@
             trap-focus
           />
         </b-field>
+      </div>
+      <div class="column">
+        <p class="title is-4 has-text-centered">
+          Student Details
+        </p>
+        <div class="box">
+          <b-field label="Name">
+            <b-input
+              v-model="studentName"
+              icon="account"
+            />
+          </b-field>
+          <b-field label="Email">
+            <b-input
+              v-model="studentEmail"
+              icon="email"
+            />
+          </b-field>
+          <b-field label="Telephone">
+            <b-input
+              v-model="studentPhone"
+              icon="phone"
+            />
+          </b-field>
+        </div>
       </div>
     </div>
     <div class="columns is-mobile has-text-centered">
@@ -67,9 +84,11 @@ export default {
     return {
       title: '',
       description: '',
-      studentName: '',
       startDate: new Date(),
-      endDate: new Date()
+      endDate: new Date(),
+      studentName: '',
+      studentEmail: '',
+      studentPhone: ''
     }
   },
   methods: {
@@ -78,16 +97,15 @@ export default {
         id: Date.now(),
         title: this.title,
         description: this.description,
-        bg: 'https://bit.ly/3dr4MAs',
+        bg: require('~/assets/application-bg.png'),
         student: {
           name: this.studentName,
-          avatar: 'https://bit.ly/2VdXyJH'
+          email: this.studentEmail,
+          phone: this.studentPhone,
+          avatar: require('~/assets/student-avatar.jpg')
         },
         startDate: this.startDate,
-        endDate: this.endDate,
-        steps: 12,
-        tasks: 32,
-        progress: 60
+        endDate: this.endDate
       }
       this.$store.commit('applications/add', application)
       this.$router.replace('/applications')

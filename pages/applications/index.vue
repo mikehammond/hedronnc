@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     applications () {
-      return this.$store.state.applications.list
+      return this.$store.getters['applications/getApplications']
     }
   }
 }

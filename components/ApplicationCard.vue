@@ -30,14 +30,14 @@
             icon="sign-direction"
             size="is-small"
           />
-          {{ application.steps }} steps
+          {{ steps.length }} steps
         </div>
         <div class="column is-one-third">
           <b-icon
             icon="calendar-check"
             size="is-small"
           />
-          {{ application.tasks }} tasks
+          {{ tasks.length }} tasks
         </div>
       </div>
       <div class="columns is-gapless">
@@ -57,11 +57,10 @@
           </p>
           <b-progress
             type="is-success"
-            :value="application.progress"
+            :value="progress"
             show-value
-          >
-            {{ application.progress }}%
-          </b-progress>
+            format="percent"
+          />
         </div>
       </div>
     </div>
@@ -78,6 +77,17 @@ export default {
     link: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    steps () {
+      return this.$store.getters['steps/getStepsByApplicationId'](this.application.id)
+    },
+    tasks () {
+      return this.$store.getters['tasks/getTasksByApplicationId'](this.application.id)
+    },
+    progress () {
+      return this.$store.getters['tasks/getApplicationProgress'](this.application.id)
     }
   }
 }

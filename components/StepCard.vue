@@ -2,14 +2,17 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by2">
-        <img src="https://bit.ly/2CuBVOI" alt="Placeholder image">
+        <img
+          :src="step.bg"
+          alt="Placeholder image"
+        >
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
           <p>
-            {{ title }}
+            {{ step.title }}
           </p>
         </div>
         <div class="media-right">
@@ -30,8 +33,8 @@
 export default {
   name: 'StepCard',
   props: {
-    title: {
-      type: String,
+    step: {
+      type: Object,
       required: true
     }
   }
