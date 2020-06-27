@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile has-text-right">
+    <div class="columns has-text-right">
       <div class="column">
         <nuxt-link
           to="/applications/new"
@@ -13,7 +13,7 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="columns is-multiline is-mobile">
+    <div class="columns is-multiline">
       <div
         v-for="application in applications"
         :key="application.id"
@@ -46,5 +46,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .section {
+    margin-top: 2rem;
+  }
 </style>

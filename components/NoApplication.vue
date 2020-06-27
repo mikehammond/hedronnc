@@ -1,20 +1,18 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile is-centered">
-      <div id="no-application" class="column is-one-third">
-        <figure class="image is-128x128">
-          <img src="~assets/no-application.png">
-        </figure>
-        <p class="title is-4">
-          You have no Applications here
-        </p>
-        <nuxt-link
-          to="/applications/new"
-          class="button is-fullwidth is-primary"
-        >
-          Start New Application
-        </nuxt-link>
-      </div>
+  <section id="no-application" class="section">
+    <div class="box">
+      <figure class="image is-128x128">
+        <img src="~assets/no-application.png">
+      </figure>
+      <p class="title is-4 has-text-centered">
+        You have no Applications here
+      </p>
+      <nuxt-link
+        to="/applications/new"
+        class="button is-fullwidth is-primary"
+      >
+        Start New Application
+      </nuxt-link>
     </div>
   </section>
 </template>
@@ -31,6 +29,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 450px;
+  height: 100vh;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

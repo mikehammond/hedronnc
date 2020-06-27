@@ -1,10 +1,10 @@
 <template>
   <div>
-    <b-navbar class="is-primary">
+    <b-navbar class="is-primary is-fixed-top">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
           <img
-            src="~assets/h-scorecard.png"
+            src="~/assets/logo/h-scorecard-v4.jpeg"
             alt="Lightweight UI components for Vue.js based on Bulma"
           >
         </b-navbar-item>
@@ -35,11 +35,9 @@
         </b-navbar-item>
       </template>
     </b-navbar>
-    <section class="main-content columns">
-      <div class="container column">
-        <nuxt />
-      </div>
-    </section>
+    <div class="container">
+      <nuxt />
+    </div>
   </div>
 </template>
 

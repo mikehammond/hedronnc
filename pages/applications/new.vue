@@ -1,42 +1,40 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile has-text-centered">
+    <div class="columns">
       <div class="column">
-        <h1 class="title">
-          Add New Application
-        </h1>
-      </div>
-    </div>
-    <div class="columns is-mobile">
-      <div class="column">
-        <b-field label="Application Title">
-          <b-input
-            v-model="title"
-            icon="format-title"
-          />
-        </b-field>
-        <b-field label="Application Description">
-          <b-input
-            v-model="description"
-            type="textarea"
-          />
-        </b-field>
-        <b-field label="Start Date">
-          <b-datepicker
-            v-model="startDate"
-            placeholder="Click to select..."
-            icon="calendar-today"
-            trap-focus
-          />
-        </b-field>
-        <b-field label="End Date">
-          <b-datepicker
-            v-model="endDate"
-            placeholder="Click to select..."
-            icon="calendar-today"
-            trap-focus
-          />
-        </b-field>
+        <p class="title is-4 has-text-centered">
+          Application Details
+        </p>
+        <div class="box">
+          <b-field label="Application Title">
+            <b-input
+              v-model="title"
+              icon="format-title"
+            />
+          </b-field>
+          <b-field label="Application Description">
+            <b-input
+              v-model="description"
+              type="textarea"
+            />
+          </b-field>
+          <b-field label="Start Date">
+            <b-datepicker
+              v-model="startDate"
+              placeholder="Click to select..."
+              icon="calendar-today"
+              trap-focus
+            />
+          </b-field>
+          <b-field label="End Date">
+            <b-datepicker
+              v-model="endDate"
+              placeholder="Click to select..."
+              icon="calendar-today"
+              trap-focus
+            />
+          </b-field>
+        </div>
       </div>
       <div class="column">
         <p class="title is-4 has-text-centered">
@@ -64,7 +62,7 @@
         </div>
       </div>
     </div>
-    <div class="columns is-mobile has-text-centered">
+    <div class="columns has-text-centered">
       <div class="column">
         <b-button
           type="is-primary"
@@ -115,5 +113,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .section {
+    margin-top: 2rem;
+  }
 </style>

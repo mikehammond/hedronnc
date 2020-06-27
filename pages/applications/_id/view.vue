@@ -1,14 +1,10 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile has-text-centered">
+    <div class="columns">
       <div class="column">
-        <h1 class="title">
+        <p class="title is-4 has-text-centered">
           Application Details
-        </h1>
-      </div>
-    </div>
-    <div class="columns is-mobile">
-      <div class="column">
+        </p>
         <b-field label="Application Title">
           <b-input
             icon="format-title"
@@ -49,12 +45,12 @@
           />
         </b-field>
       </div>
-      <div class="column has-text-centered">
-        <p class="title is-4">
+      <div class="column">
+        <p class="title is-4 has-text-centered">
           Application Steps
         </p>
-        <div class="tile box">
-          <div class="columns is-mobile is-multiline">
+        <div class="box">
+          <div class="columns is-multiline">
             <div
               v-for="(step, key) in steps"
               :key="key"
@@ -135,5 +131,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .section {
+    margin-top: 2rem;
+  }
 </style>
