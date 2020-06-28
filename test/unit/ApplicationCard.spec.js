@@ -1,10 +1,10 @@
-import Vue from 'vue'
 import Buefy from 'buefy'
-import { mount, RouterLinkStub } from '@vue/test-utils'
-import { application } from '../data'
+import { mount, RouterLinkStub, createLocalVue } from '@vue/test-utils'
+import { application, step, task } from '../data'
 import ApplicationCard from '@/components/ApplicationCard.vue'
 
-Vue.use(Buefy)
+const localVue = createLocalVue()
+localVue.use(Buefy)
 
 describe('ApplicationCard', () => {
   test('is a Vue instance', () => {
@@ -15,7 +15,13 @@ describe('ApplicationCard', () => {
       propsData: {
         application,
         link: `/applications/${application.id}/view`
-      }
+      },
+      computed: {
+        steps: () => ([step]),
+        tasks: () => ([task]),
+        progress: () => 54
+      },
+      localVue
     })
     expect(wrapper.vm).toBeTruthy()
   })
