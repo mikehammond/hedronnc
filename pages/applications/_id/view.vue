@@ -1,30 +1,29 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile has-text-centered">
+    <div class="columns">
       <div class="column">
-        <h1 class="title">
+        <p class="title is-4 has-text-centered">
           Application Details
-        </h1>
-      </div>
-    </div>
-    <div class="columns is-mobile">
-      <div class="column">
+        </p>
         <b-field label="Application Title">
           <b-input
             icon="format-title"
-            value="Kevin Garvey"
+            :value="application.title"
+            disabled
           />
         </b-field>
         <b-field label="Application Description">
           <b-input
             type="textarea"
-            value="Kevin Garvey"
+            :value="application.description"
+            disabled
           />
         </b-field>
         <b-field label="Student Name">
           <b-input
             icon="account"
-            value="Kevin Garvey"
+            :value="application.student.name"
+            disabled
           />
         </b-field>
         <b-field label="Start Date">
@@ -32,6 +31,8 @@
             placeholder="Click to select..."
             icon="calendar-today"
             trap-focus
+            :value="application.startDate"
+            disabled
           />
         </b-field>
         <b-field label="End Date">
@@ -39,22 +40,24 @@
             placeholder="Click to select..."
             icon="calendar-today"
             trap-focus
+            :value="application.endDate"
+            disabled
           />
         </b-field>
       </div>
-      <div class="column has-text-centered">
-        <p class="subtitle">
+      <div class="column">
+        <p class="title is-4 has-text-centered">
           Application Steps
         </p>
-        <div class="tile box">
-          <div class="columns is-mobile is-multiline">
+        <div class="box">
+          <div class="columns is-multiline">
             <div
               v-for="(step, key) in steps"
               :key="key"
               class="column is-half"
-              @click="isModalActive = true"
+              @click="openModal(step)"
             >
-              <step-card :title="step.title" />
+              <step-card :step="step" />
             </div>
           </div>
         </div>
@@ -62,7 +65,7 @@
           <div class="column">
             <b-button
               type="is-primary"
-              @click="isModalActive = true"
+              @click="isNewStepModalActive = true"
             >
               Add New Step
             </b-button>
@@ -71,10 +74,19 @@
       </div>
     </div>
     <b-modal
-      :active.sync="isModalActive"
+      :active.sync="isStepDetailModalActive"
       :width="640"
     >
-      <step-detail />
+      <step-detail
+        :application="application"
+        :step="selectedStep"
+      />
+    </b-modal>
+    <b-modal
+      :active.sync="isNewStepModalActive"
+      :width="640"
+    >
+      <new-step :application="application" />
     </b-modal>
   </section>
 </template>
@@ -82,26 +94,44 @@
 <script>
 import StepCard from '~/components/StepCard'
 import StepDetail from '~/components/StepDetail'
+import NewStep from '~/components/NewStep'
 
 export default {
   name: 'ViewApplication',
+  middleware: ['application'],
   components: {
     StepCard,
-    StepDetail
+    StepDetail,
+    NewStep
   },
   data () {
     return {
-      steps: [
-        { title: 'Application Form' },
-        { title: 'Visa Application' },
-        { title: 'Application Submission' }
-      ],
-      isModalActive: false
+      isNewStepModalActive: false,
+      isStepDetailModalActive: false,
+      selectedStep: null
+    }
+  },
+  computed: {
+    application () {
+      const id = this.$route.params.id
+      return this.$store.getters['applications/getApplicationById'](+id)
+    },
+    steps () {
+      const id = this.$route.params.id
+      return this.$store.getters['steps/getStepsByApplicationId'](+id)
+    }
+  },
+  methods: {
+    openModal (step) {
+      this.selectedStep = step
+      this.isStepDetailModalActive = true
     }
   }
 }
 </script>
 
 <style scoped>
-
+  .section {
+    margin-top: 2rem;
+  }
 </style>

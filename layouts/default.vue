@@ -1,55 +1,30 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
+    <b-navbar class="is-primary is-fixed-top">
+      <template slot="brand">
+        <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
           <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
+            src="~/assets/logo/h-scorecard-v4.jpeg"
+            alt="Lightweight UI components for Vue.js based on Bulma"
           >
-        </a>
-
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-      <div class="navbar-menu">
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
+        </b-navbar-item>
+      </template>
+      <template slot="start">
         <search />
-        <span class="navbar-item" />
-        <span class="navbar-item" />
-        <nuxt-link
+        <b-navbar-item
           v-for="(item, key) of items"
           :key="key"
-          class="navbar-item has-text-dark"
+          tag="nuxt-link"
           :to="item.to"
         >
           {{ item.title }}
-        </nuxt-link>
-      </div>
-      <div class="navbar-end">
-        <div
+        </b-navbar-item>
+      </template>
+      <template slot="end">
+        <b-navbar-item
           v-if="$auth.loggedIn"
           class="navbar-item"
+          tag="div"
         >
           <b-button
             class="button is-light"
@@ -57,15 +32,12 @@
           >
             Log Out
           </b-button>
-        </div>
-      </div>
-    </nav>
-
-    <section class="main-content columns">
-      <div class="container column">
-        <nuxt />
-      </div>
-    </section>
+        </b-navbar-item>
+      </template>
+    </b-navbar>
+    <div class="container">
+      <nuxt />
+    </div>
   </div>
 </template>
 
@@ -82,12 +54,12 @@ export default {
         {
           title: 'Dashboard',
           icon: 'view-dashboard',
-          to: { name: 'index' }
+          to: '/'
         },
         {
           title: 'Applications',
           icon: 'application',
-          to: { name: 'applications' }
+          to: '/applications'
         }
       ]
     }

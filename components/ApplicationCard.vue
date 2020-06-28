@@ -3,24 +3,24 @@
     <div class="card-image">
       <figure class="image is-2by1">
         <img
-          src="https://bit.ly/3dr4MAs"
+          :src="application.bg"
           alt="Placeholder image"
         >
       </figure>
       <figure class="image is-48x48 avatar">
         <img
           class="is-rounded"
-          src="https://bit.ly/2VdXyJH"
+          :src="application.student.avatar"
           alt="Avatar"
         >
       </figure>
       <p class="avatar-name has-text-white">
-        Student
+        {{ application.student.name }}
       </p>
     </div>
     <header class="card-header">
       <p class="card-header-title has-text-grey">
-        {{ title }}
+        {{ application.title }}
       </p>
     </header>
     <div class="card-content">
@@ -30,14 +30,14 @@
             icon="sign-direction"
             size="is-small"
           />
-          24 steps
+          {{ steps.length }} steps
         </div>
         <div class="column is-one-third">
           <b-icon
             icon="calendar-check"
             size="is-small"
           />
-          12 tasks
+          {{ tasks.length }} tasks
         </div>
       </div>
       <div class="columns is-gapless">
@@ -57,11 +57,10 @@
           </p>
           <b-progress
             type="is-success"
-            :value="60"
+            :value="progress"
             show-value
-          >
-            60%
-          </b-progress>
+            format="percent"
+          />
         </div>
       </div>
     </div>
@@ -71,13 +70,24 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
+    application: {
+      type: Object,
       required: true
     },
     link: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    steps () {
+      return this.$store.getters['steps/getStepsByApplicationId'](this.application.id)
+    },
+    tasks () {
+      return this.$store.getters['tasks/getTasksByApplicationId'](this.application.id)
+    },
+    progress () {
+      return this.$store.getters['tasks/getApplicationProgress'](this.application.id)
     }
   }
 }

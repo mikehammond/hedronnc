@@ -2,9 +2,8 @@
   <section class="navbar-item">
     <b-autocomplete
       v-model="name"
-      rounded
       :data="filteredDataArray"
-      placeholder="e.g. jQuery"
+      placeholder="Enter Keyword"
       icon="magnify"
       clearable
       @select="option => selected = option"

@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile has-text-centered">
+    <div class="columns has-text-centered">
       <div class="column">
         <h1 class="title">
           Dashboard View Coming Soon
@@ -16,3 +16,8 @@ export default {
   name: 'HomePage'
 }
 </script>
+<style scoped>
+  .section {
+    margin-top: 2rem;
+  }
+</style>
