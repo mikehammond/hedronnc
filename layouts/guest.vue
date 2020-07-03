@@ -1,33 +1,18 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
+    <b-navbar class="is-light transparent is-fixed-top">
+      <template slot="brand">
+        <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
           <img
-            src="~assets/h-scorecard.png"
-            alt="Buefy"
-            height="28"
+            src="~/assets/logo/scorecard-v1.png"
+            alt="Lightweight UI components for Vue.js based on Bulma"
           >
-        </a>
-
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </nav>
-
-    <section class="main-content">
+        </b-navbar-item>
+      </template>
+    </b-navbar>
+    <div class="container">
       <nuxt />
-    </section>
+    </div>
   </div>
 </template>
 

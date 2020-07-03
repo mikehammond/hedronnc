@@ -7,13 +7,6 @@
           alt="Placeholder image"
         >
       </figure>
-      <figure class="image is-48x48 avatar">
-        <img
-          class="is-rounded"
-          :src="application.student.avatar"
-          alt="Avatar"
-        >
-      </figure>
       <p class="avatar-name has-text-white">
         {{ application.student.name }}
       </p>
@@ -56,7 +49,7 @@
             Application Progress
           </p>
           <b-progress
-            type="is-success"
+            type="is-primary"
             :value="progress"
             show-value
             format="percent"
@@ -87,7 +80,20 @@ export default {
       return this.$store.getters['tasks/getTasksByApplicationId'](this.application.id)
     },
     progress () {
-      return this.$store.getters['tasks/getApplicationProgress'](this.application.id)
+      const result = this.$store.getters['tasks/getApplicationProgress'](this.application.id)
+      if (result === 100) {
+        this.$axios.$post('https://hedronnc-functions.herokuapp.com/notifications/email', {
+          from: this.$auth.user.email,
+          to: this.application.student.email,
+          subject: `Completion of ${this.application.title}`,
+          message: `Hello ${this.application.student.name}, Your Application has been completed.`
+        })
+        this.$axios.$post('https://hedronnc-functions.herokuapp.com/notifications/sms', {
+          to: this.application.student.email,
+          message: `Hello ${this.application.student.name}, Your Application has been completed.`
+        })
+      }
+      return result
     }
   }
 }
@@ -97,15 +103,10 @@ export default {
   .card-image {
     position: relative;
   }
-  .avatar {
-    position: absolute;
-    bottom: -10px;
-    left: 15px;
-  }
   .avatar-name {
     position: absolute;
-    bottom: 2px;
-    left: 70px;
+    top: 10px;
+    left: 10px;
     font-weight: bolder;
   }
 </style>

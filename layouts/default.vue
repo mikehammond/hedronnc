@@ -1,10 +1,10 @@
 <template>
   <div>
-    <b-navbar class="is-primary is-fixed-top">
+    <b-navbar class="is-light transparent is-fixed-top">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
           <img
-            src="~/assets/logo/h-scorecard-v4.jpeg"
+            src="~/assets/logo/scorecard-v1.png"
             alt="Lightweight UI components for Vue.js based on Bulma"
           >
         </b-navbar-item>
@@ -17,7 +17,7 @@
           tag="nuxt-link"
           :to="item.to"
         >
-          {{ item.title }}
+          <strong>{{ item.title }}</strong>
         </b-navbar-item>
       </template>
       <template slot="end">
@@ -27,7 +27,7 @@
           tag="div"
         >
           <b-button
-            class="button is-light"
+            class="button is-danger"
             @click="logout"
           >
             Log Out
