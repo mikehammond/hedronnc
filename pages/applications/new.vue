@@ -99,8 +99,7 @@ export default {
         student: {
           name: this.studentName,
           email: this.studentEmail,
-          phone: this.studentPhone,
-          avatar: require('~/assets/student-avatar.jpg')
+          phone: this.studentPhone
         },
         startDate: this.startDate,
         endDate: this.endDate

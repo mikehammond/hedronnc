@@ -48,7 +48,7 @@ export default {
         bg: require('~/assets/application-bg.png')
       }
       this.$store.commit('steps/add', step)
-      this.title = ''
+      this.$parent.close()
     }
   }
 }

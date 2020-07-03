@@ -10,20 +10,9 @@
     </div>
     <div class="card-content">
       <div class="media">
-        <div class="media-content">
-          <p>
-            {{ step.title }}
-          </p>
-        </div>
-        <div class="media-right">
-          <figure class="image is-32x32">
-            <img
-              class="is-rounded"
-              src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
-              alt="Placeholder image"
-            >
-          </figure>
-        </div>
+        <p>
+          {{ step.title }}
+        </p>
       </div>
     </div>
   </div>

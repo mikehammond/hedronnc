@@ -1,15 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row has-text-centered">
-      <b-button
-        class="mt-5"
-        type="is-info"
-        @click="$auth.loginWith('auth0')"
-      >
-        Login With Auth0
-      </b-button>
+  <section class="section">
+    <div class="columns has-text-centered">
+      <div class="column">
+        <b-button
+          class="mt-5"
+          type="is-primary"
+          @click="$auth.loginWith('auth0')"
+        >
+          Login With Auth0
+        </b-button>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -20,5 +22,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .section {
+    margin-top: 2rem;
+  }
 </style>

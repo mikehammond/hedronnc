@@ -9,30 +9,9 @@
       </figure>
     </div>
     <div class="card-content">
-      <div class="media">
-        <div class="media-content">
-          <p class="title is-5">
-            {{ step ? step.title : '' }}
-          </p>
-          <p>
-            <span>for Rosemarlines Effiong</span>
-            <b-icon
-              icon="account"
-            />
-          </p>
-        </div>
-        <div class="media-right">
-          <p>Assigned To Karim Kasim</p>
-          <figure class="is-flex image is-48x48 is-pulled-right">
-            <img
-              src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
-              alt="Image"
-              class="is-rounded"
-            >
-          </figure>
-        </div>
-      </div>
-
+      <p class="title is-4">
+        {{ step ? step.title : '' }}
+      </p>
       <div class="content">
         <div class="field">
           <b-icon icon="checkbox-marked-outline" />
