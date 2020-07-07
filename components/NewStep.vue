@@ -42,13 +42,17 @@ export default {
   methods: {
     addStep () {
       const step = {
-        id: Date.now(),
-        applicationId: this.application.id,
+        userId: this.$auth.user.sub,
+        applicationId: this.application._id,
         title: this.title,
-        bg: require('~/assets/application-bg.png')
+        completed: false
       }
-      this.$store.commit('steps/add', step)
-      this.$parent.close()
+      this.$axios.$post('/steps', step).then((data) => {
+        this.$store.commit('steps/add', data)
+        this.$parent.close()
+      }).catch(() => {
+        // Show Error Notification
+      })
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-4by2">
         <img
-          :src="step.bg"
+          src="~/assets/application-bg.png"
           alt="Placeholder image"
         >
       </figure>

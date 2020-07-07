@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-3by1">
         <img
-          :src="step ? step.bg : 'https://bit.ly/2CuBVOI'"
+          src="~/assets/application-bg.png"
           alt="Image"
         >
       </figure>
@@ -30,7 +30,7 @@
         >
           <b-checkbox
             :value="task.checked"
-            @change.native="toggleChecked(task.id)"
+            @change.native="toggleChecked(task._id, task.checked)"
           >
             {{ task.title }}
           </b-checkbox>
@@ -74,26 +74,40 @@ export default {
   },
   computed: {
     tasks () {
-      return this.$store.getters['tasks/getTasksByStepId'](this.step.id)
+      return this.$store.getters['tasks/getTasksByStepId'](this.step._id)
     },
     progress () {
-      return this.$store.getters['tasks/getStepProgress'](this.step.id)
+      const result = this.$store.getters['tasks/getStepProgress'](this.step._id)
+      if (result === 100) {
+        // Set Step completed to true
+      } else {
+        // Set Step completed to false
+      }
+      return result
     }
   },
   methods: {
     addTask () {
       const task = {
-        id: Date.now(),
-        applicationId: this.application.id,
-        stepId: this.step.id,
+        userId: this.$auth.user.sub,
+        applicationId: this.application._id,
+        stepId: this.step._id,
         title: this.newTask,
         checked: false
       }
-      this.$store.commit('tasks/add', task)
-      this.newTask = ''
+      this.$axios.$post('/tasks', task).then((data) => {
+        this.$store.commit('tasks/add', data)
+        this.newTask = ''
+      }).catch(() => {
+        // Show Error Notification
+      })
     },
-    toggleChecked (id) {
-      this.$store.commit('tasks/toggleChecked', id)
+    toggleChecked (id, checked) {
+      this.$axios.$patch(`/tasks/${id}`, { checked: !checked }).then(() => {
+        this.$store.commit('tasks/toggleChecked', id)
+      }).catch(() => {
+        // Show Error Notification
+      })
     }
   }
 }

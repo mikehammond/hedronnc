@@ -9,6 +9,13 @@ $danger-invert: findColorInvert($danger);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
 
+$application-count: #4F0262;
+$application-count-invert: findColorInvert($application-count);
+$application-completed: #6E41E2;
+$application-completed-invert: findColorInvert($application-completed);
+$application-pending: #B93153;
+$application-pending-invert: findColorInvert($application-pending);
+
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
   "white": ($white, $black),
@@ -20,7 +27,10 @@ $colors: (
   "success": ($success, $success-invert),
   "warning": ($warning, $warning-invert),
   "danger": ($danger, $danger-invert),
-  "twitter": ($twitter, $twitter-invert)
+  "twitter": ($twitter, $twitter-invert),
+  "application-count": ($application-count, $application-count-invert),
+  "application-completed": ($application-completed, $application-completed-invert),
+  "application-pending": ($application-pending, $application-pending-invert),
 );
 
 // Links

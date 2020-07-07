@@ -22,7 +22,7 @@
         <b-field label="Student Name">
           <b-input
             icon="account"
-            :value="application.student.name"
+            :value="application.studentName"
             disabled
           />
         </b-field>
@@ -31,7 +31,7 @@
             placeholder="Click to select..."
             icon="calendar-today"
             trap-focus
-            :value="application.startDate"
+            :value="new Date(application.startDate)"
             disabled
           />
         </b-field>
@@ -40,7 +40,7 @@
             placeholder="Click to select..."
             icon="calendar-today"
             trap-focus
-            :value="application.endDate"
+            :value="new Date(application.endDate)"
             disabled
           />
         </b-field>
@@ -114,11 +114,11 @@ export default {
   computed: {
     application () {
       const id = this.$route.params.id
-      return this.$store.getters['applications/getApplicationById'](+id)
+      return this.$store.getters['applications/getApplicationById'](id)
     },
     steps () {
       const id = this.$route.params.id
-      return this.$store.getters['steps/getStepsByApplicationId'](+id)
+      return this.$store.getters['steps/getStepsByApplicationId'](id)
     }
   },
   methods: {

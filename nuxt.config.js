@@ -10,7 +10,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Hedron | Scorecard',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -71,7 +71,9 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'https://hedronnc-api-dev.herokuapp.com'
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
