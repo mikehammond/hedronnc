@@ -12,5 +12,6 @@ export const mutations = {
 
 export const getters = {
   getApplications: state => state.list,
+  getApplicationsCount: state => state.list.length,
   getApplicationById: state => id => state.list.find(x => x.id === id)
 }
