@@ -92,20 +92,22 @@ export default {
   methods: {
     addApplication () {
       const application = {
-        id: Date.now(),
+        userId: this.$auth.user.sub,
         title: this.title,
         description: this.description,
-        bg: require('~/assets/application-bg.png'),
-        student: {
-          name: this.studentName,
-          email: this.studentEmail,
-          phone: this.studentPhone
-        },
+        studentName: this.studentName,
+        studentEmail: this.studentEmail,
+        studentPhone: this.studentPhone,
         startDate: this.startDate,
-        endDate: this.endDate
+        endDate: this.endDate,
+        completed: false
       }
-      this.$store.commit('applications/add', application)
-      this.$router.replace('/applications')
+      this.$axios.$post('/applications', application).then((data) => {
+        this.$store.commit('applications/add', data)
+        this.$router.replace('/applications')
+      }).catch(() => {
+        // Show Error Notification
+      })
     }
   }
 }

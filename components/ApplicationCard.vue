@@ -3,12 +3,12 @@
     <div class="card-image">
       <figure class="image is-2by1">
         <img
-          :src="application.bg"
+          src="~/assets/application-bg.png"
           alt="Placeholder image"
         >
       </figure>
       <p class="avatar-name has-text-white">
-        {{ application.student.name }}
+        {{ application.studentName }}
       </p>
     </div>
     <header class="card-header">
@@ -74,24 +74,17 @@ export default {
   },
   computed: {
     steps () {
-      return this.$store.getters['steps/getStepsByApplicationId'](this.application.id)
+      return this.$store.getters['steps/getStepsByApplicationId'](this.application._id)
     },
     tasks () {
-      return this.$store.getters['tasks/getTasksByApplicationId'](this.application.id)
+      return this.$store.getters['tasks/getTasksByApplicationId'](this.application._id)
     },
     progress () {
-      const result = this.$store.getters['tasks/getApplicationProgress'](this.application.id)
+      const result = this.$store.getters['tasks/getApplicationProgress'](this.application._id)
       if (result === 100) {
-        this.$axios.$post('https://hedronnc-functions.herokuapp.com/notifications/email', {
-          from: this.$auth.user.email,
-          to: this.application.student.email,
-          subject: `Completion of ${this.application.title}`,
-          message: `Hello ${this.application.student.name}, Your Application has been completed.`
-        })
-        this.$axios.$post('https://hedronnc-functions.herokuapp.com/notifications/sms', {
-          to: this.application.student.email,
-          message: `Hello ${this.application.student.name}, Your Application has been completed.`
-        })
+        // Set Application completed to true
+      } else {
+        // Set Application completed to false
       }
       return result
     }

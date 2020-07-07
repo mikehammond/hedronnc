@@ -16,12 +16,12 @@
     <div class="columns is-multiline">
       <div
         v-for="application in applications"
-        :key="application.id"
+        :key="application._id"
         class="column is-one-third"
       >
         <application-card
           :application="application"
-          :link="`/applications/${application.id}/view`"
+          :link="`/applications/${application._id}/view`"
         />
       </div>
     </div>

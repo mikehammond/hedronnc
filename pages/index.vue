@@ -23,7 +23,7 @@
               <b-icon
                 icon="clock-outline"
               />
-              10
+              {{ pendingApplicationsCount }}
             </p>
             <p class="summary-card-content-text">
               Pending Applications
@@ -38,7 +38,7 @@
               <b-icon
                 icon="checkbox-marked-circle-outline"
               />
-              10
+              {{ completedApplicationsCount }}
             </p>
             <p class="summary-card-content-text">
               Completed Applications
@@ -57,6 +57,12 @@ export default {
   computed: {
     applicationsCount () {
       return this.$store.getters['applications/getApplicationsCount']
+    },
+    pendingApplicationsCount () {
+      return this.$store.getters['applications/getPendingApplicationsCount']
+    },
+    completedApplicationsCount () {
+      return this.$store.getters['applications/getCompletedApplicationsCount']
     }
   }
 }

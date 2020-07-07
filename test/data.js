@@ -3,12 +3,9 @@ export const application = {
   title: 'Oxford University - Undergraduate',
   description: 'Very New Application Description',
   bg: '~/assets/application-bg.png',
-  student: {
-    name: 'Michael Hammond',
-    email: 'michael.hammond@meltwater.org',
-    phone: '+233248470214',
-    avatar: '~/assets/student-avatar.jpg'
-  },
+  studentName: 'Michael Hammond',
+  studentEmail: 'michael.hammond@meltwater.org',
+  studentPhone: '+233248470214',
   startDate: new Date(),
   endDate: new Date()
 }
